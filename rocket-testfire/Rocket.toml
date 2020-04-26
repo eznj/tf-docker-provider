@@ -1,6 +1,13 @@
 [development]
 address = "localhost"
-port = 4499
+port = 4000
 keep_alive = 5
 log = "normal"
 workers = 4
+
+[production]
+address = "0.0.0.0"
+port = 4000
+keep_alive = 5
+log = "critical"
+workers = 8

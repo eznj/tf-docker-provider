@@ -1,5 +1,5 @@
 resource "docker_image" "rust-testfire" {
-  name         = "njames/rust-custom:latest"
+  name         = "njames/testfire:latest"
   keep_locally = false
 }
 
@@ -10,9 +10,9 @@ resource "docker_image" "nginx" {
 
 resource "docker_container" "rust" {
   image = docker_image.rust-testfire.latest
-  name  = "testfire-rust"
+  name  = "rust-testfire"
   ports {
-    internal = 4499
+    internal = 4000
     external = 4499
   }
 }
