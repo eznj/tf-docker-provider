@@ -24,7 +24,7 @@ Assuming you have Docker set up on your machine:
 terraform apply
 ```
 
-The server should be running on your docker host on port `4499`
+You can curl your docker host now on port `80` to see the response from the rocket server via nginx
 
 Enjoy!
 
