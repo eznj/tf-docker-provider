@@ -3,8 +3,8 @@ resource "docker_image" "rust-testfire" {
   keep_locally = false
 }
 
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
+resource "docker_image" "custom-nginx" {
+  name         = "njames/custom-nginx:latest"
   keep_locally = false
 }
 
@@ -26,7 +26,7 @@ resource "docker_container" "rust" {
 }
 
 resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
+  image = docker_image.custom-nginx.latest
   name  = "nginx"
   networks_advanced {
     name = "private"
