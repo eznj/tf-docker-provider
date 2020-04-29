@@ -1,11 +1,11 @@
 resource "docker_image" "rust-testfire" {
   name         = "njames/testfire:latest"
-  keep_locally = false
+  keep_locally = true
 }
 
 resource "docker_image" "custom-nginx" {
   name         = "njames/custom-nginx:latest"
-  keep_locally = false
+  keep_locally = true
 }
 
 resource "docker_network" "private_network" {
@@ -28,12 +28,13 @@ resource "docker_container" "rust" {
 resource "docker_container" "nginx" {
   image = docker_image.custom-nginx.latest
   name  = "nginx"
+  restart = "on-failure"
   networks_advanced {
     name = "private"
     aliases = ["nginx"]
   }
   ports {
     internal = 80
-    external = 8000
+    external = 80
   }
 }
