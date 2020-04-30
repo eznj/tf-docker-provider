@@ -6,7 +6,7 @@ Not much to see here but if you want to look, you can:
 git clone git@github.com:/nicksort/tf-docker-test
 ```
 
-If you need it:
+If you need to install Terraform:
 
 ```
 brew install terraform
@@ -24,7 +24,6 @@ Assuming you have Docker set up on your machine:
 terraform apply
 ```
 
-You can curl your docker host now on port `80` to see the response from the rocket server via nginx
+You can curl your docker host now on port `80` to see the response from the rocket server via nginx.
 
 Enjoy!
-

@@ -1,6 +1,9 @@
 FROM rust:latest AS build
-WORKDIR /usr/src
 
+ENV DATABASE_URL "postgres://user:pass@pg/testfire"
+
+WORKDIR /usr/src
+RUN apt update -y && apt install -y curl vim glances postgresql-client
 RUN rustup target add x86_64-unknown-linux-musl
 RUN rustup default nightly
 COPY . ./
@@ -8,6 +11,7 @@ COPY . ./
 WORKDIR /usr/src/rocket-testfire
 RUN rustup target add x86_64-unknown-linux-musl --toolchain nightly
 RUN cargo build --release
+RUN cargo install diesel_cli --no-default-features --features postgres
 USER 1000
 EXPOSE 4000
 CMD ["./target/release/rocket-testfire"]
