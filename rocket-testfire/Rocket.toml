@@ -11,6 +11,3 @@ port = 4000
 keep_alive = 5
 log = "critical"
 workers = 8
-
-[dependencies]
-diesel = { version = "1.4.4", features = ["postgres"] }
