@@ -7,6 +7,11 @@ resource "docker_image" "pg" {
   keep_locally = true
 }
 
+resource "docker_image" "airflow" {
+  name         = "apache/airflow"
+  keep_locally = true
+}
+
 resource "docker_image" "rocket" {
   name         = "njames/testfire"
   keep_locally = true
@@ -43,6 +48,19 @@ resource "docker_container" "nginx" {
     internal = 80
     external = 80
   }
+}
+
+resource "docker_container" "airflow" {
+  image   = docker_image.custom-nginx.latest
+  name    = "airflow"
+  restart = "unless-stopped"
+  networks_advanced {
+    name = "private"
+    aliases = ["airflow"]
+  }
+  ports {
+    internal = 80
+    external = 5000
 }
 
 resource "docker_container" "pg" {
