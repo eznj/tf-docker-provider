@@ -61,6 +61,7 @@ resource "docker_container" "airflow" {
   ports {
     internal = 80
     external = 5000
+  }
 }
 
 resource "docker_container" "pg" {
